@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/my-fragments :: header-fragment"></head>
+<body>
+<div th:replace="fragments/my-fragments :: navbar-fragment"></div>
+<div class="container" id="main">
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-trophy"></i> Top Three
+        </div>
+        <!--<div class="card-body" th:each="user: ${users}">
+            <div class="row newer-row align-items-center">
+                <div class="col-sm-2 text-center">
+                    <i class="far fa-user-circle"></i>
+                </div>
+            </div>
+        </div>-->
+        <div class="table-responsive">
+            <table class="text-center table table-light table-bordered" >
+                <thead>
+                <tr class="table-success">
+                    <th scope="col">Sr. No.</th>
+                    <th></th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Points</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user: ${users}">
+                    <td></td>
+                    <td>
+                        <img class="img-fluid user-photo"
+                             src="/images/user.png"/>
+                    </td>
+                    <td th:text="${user.fullName}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.points}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<div th:replace="fragments/my-fragments :: footer-fragment"></div>
+</body>
+<script type="application/javascript" th:inline="javascript">
+    $(document).ready(function () {
+        addSerialNumber();
+    });
+    var addSerialNumber = function () {
+        $('table tr').each(function(index) {
+            $(this).find('td:nth-child(1)').html(index);
+        });
+    };
+</script>
+</html>
